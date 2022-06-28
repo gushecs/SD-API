@@ -20,7 +20,8 @@ public record UserController(UserService userService) {
     public ResponseEntity<User> signUp(@RequestBody User user) {return ResponseEntity.ok(userService.signUp(user));}
 
     @DeleteMapping(path="/{id}")
-    public void delete(@PathVariable Integer id) {userService.delete(id);}
+    public ResponseEntity<String> delete(@PathVariable Integer id) {userService.delete(id);
+    return ResponseEntity.ok("User "+id.toString()+" successfully deleted!");}
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<User> update (@PathVariable Integer id, @RequestBody User user) {
