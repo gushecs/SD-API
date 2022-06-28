@@ -12,9 +12,12 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"crm","uf"})})
 public class CRM {
 
     @Id
+    @SequenceGenerator(name = "crm_id_sequence",sequenceName = "crm_id_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crm_id_sequence")
     private Integer id;
 
     @Column(nullable = false, length = 45)
@@ -28,4 +31,7 @@ public class CRM {
     @JoinColumn(name="user_id")
     private User user;
 
+    public void setUf(UF uf) {this.uf = uf.getDescription();}
+
+    public UF getUf(){return UF.toEnum(this.uf);}
 }
