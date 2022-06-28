@@ -1,14 +1,19 @@
 package sdapi;
 
 import org.hibernate.ObjectNotFoundException;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public record UserService (UserRepository userRepository){
 
-    public List<User> findAll(){return userRepository.findAll();}
+    public List<User> findAll(String name, String specialty){
+        List<CRM> crms= new ArrayList<>();
+        crms.add(new CRM(null,null,null,specialty,null));
+        return userRepository.findAll(Example.of(User.builder().name(name).crms(crms).build()));}
 
     public User findById(Integer id){return userRepository.findById(id)
             .orElseThrow(() -> new ObjectNotFoundException(id,id.toString()));}
