@@ -8,6 +8,6 @@ import java.util.Optional;
 @Repository
 public interface CRMRepository extends JpaRepository<CRM, Integer> {
 
-    public Optional<CRM> findByCrmAndUf(String crm, String uf);
+    Optional<CRM> findByCrmAndUf(String crm, String uf);
 
 }
