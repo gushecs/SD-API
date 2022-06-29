@@ -3,7 +3,7 @@ spring:
     name: sdapi
   datasource:
     url: jdbc:h2:mem:db
-    username: user
+    username: sa
     password:
   h2:
     console:
@@ -14,6 +14,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  flyway:
+    locations: filesystem:./migration
 
 server:
   port: 8080
