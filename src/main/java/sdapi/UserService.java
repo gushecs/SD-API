@@ -9,14 +9,7 @@ import java.util.List;
 @Service
 public record UserService (CRMService crmService, UserRepository userRepository){
 
-    public List<User> findAll(String name, String specialty){
-        if (specialty == null)
-            return userRepository.findAll(Example.of(User.builder().name(name).build()));
-        else if (name == null)
-            return userRepository.findAllByCrms_Specialty(specialty);
-        else
-            return userRepository.findAllByNameAndCrms_Specialty(name, specialty);
-    }
+    public List<User> findAll(String name, String specialty){return userRepository.findAll(name, specialty);}
 
     public User findById(Integer id){return userRepository.findById(id)
             .orElseThrow(() -> new ObjectNotFoundException(id,id.toString()));}
