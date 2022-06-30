@@ -1,7 +1,8 @@
-package sdapi;
+package sdapi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import sdapi.entities.CRM;
 
 import java.util.Optional;
 

@@ -6,6 +6,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Repository;
+import sdapi.entities.User;
+import sdapi.repositories.UserRepository;
 
 import java.util.List;
 

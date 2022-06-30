@@ -1,4 +1,4 @@
-package sdapi;
+package sdapi.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,10 @@
-package sdapi;
+package sdapi.services;
 
 import org.springframework.stereotype.Service;
+import sdapi.entities.CRM;
+import sdapi.entities.CRMRegisterRQ;
+import sdapi.entities.UF;
+import sdapi.repositories.CRMRepository;
 
 import java.util.Optional;
 

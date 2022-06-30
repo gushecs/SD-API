@@ -1,9 +1,10 @@
-package sdapi;
+package sdapi.controllers;
 
-import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sdapi.entities.User;
+import sdapi.services.UserService;
 
 import java.util.List;
 

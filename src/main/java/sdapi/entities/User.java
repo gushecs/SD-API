@@ -1,6 +1,7 @@
-package sdapi;
+package sdapi.entities;
 
 import lombok.*;
+import sdapi.entities.CRM;
 
 import javax.persistence.*;
 import java.util.ArrayList;

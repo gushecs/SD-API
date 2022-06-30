@@ -1,8 +1,10 @@
-package sdapi;
+package sdapi.services;
 
 import org.hibernate.ObjectNotFoundException;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import sdapi.entities.CRM;
+import sdapi.entities.User;
+import sdapi.repositories.UserRepository;
 
 import java.util.List;
 
