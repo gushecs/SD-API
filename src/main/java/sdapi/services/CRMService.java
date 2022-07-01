@@ -2,7 +2,7 @@ package sdapi.services;
 
 import org.springframework.stereotype.Service;
 import sdapi.entities.CRM;
-import sdapi.entities.CRMRegisterRQ;
+import sdapi.entities.CRMRQ;
 import sdapi.entities.UF;
 import sdapi.repositories.CRMRepository;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public record CRMService(CRMRepository crmRepository) {
 
-    public CRM register(CRMRegisterRQ registerRQ) {
+    public CRM register(CRMRQ registerRQ) {
         CRM crm = new CRM();
         crm.setCrm(registerRQ.getCrm());
         crm.setSpecialty(registerRQ.getSpecialty());
