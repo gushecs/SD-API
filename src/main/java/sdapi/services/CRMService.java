@@ -9,13 +9,14 @@ import sdapi.repositories.CRMRepository;
 import java.util.Optional;
 
 @Service
-public record CRMService(CRMRepository crmRepository) {
+public record CRMService(CRMRepository crmRepository,UserService userService) {
 
     public CRM register(CRMRQ registerRQ) {
         CRM crm = new CRM();
         crm.setCrm(registerRQ.getCrm());
         crm.setSpecialty(registerRQ.getSpecialty());
         crm.setUf(UF.toEnum(registerRQ.getUf()));
+        crm.setUser(userService.findById(registerRQ.getUser_id()));
         return crmRepository.save(crm);}
 
     public void register(CRM crm) {crmRepository.save(crm);}
