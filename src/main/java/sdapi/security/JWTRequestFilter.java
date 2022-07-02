@@ -27,8 +27,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private JWTUserDetailsService jwtUserDetailsService;
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request)
-            throws ServletException {
+    protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
         String method = request.getMethod();
         return "/sdapi/login".equals(path) || "/h2-console".equals(path) || method.equals("GET");

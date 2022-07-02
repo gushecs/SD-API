@@ -1,7 +1,7 @@
 package sdapi.services;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
+import sdapi.controllers.exceptions.ObjectNotFoundException;
 import sdapi.entities.CRM;
 import sdapi.entities.User;
 import sdapi.entities.UserRQ;
@@ -21,23 +21,23 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
         return usersToReturn;}
 
     public UserRS findById(Integer id){return new UserRS(userRepository.findById(id)
-            .orElseThrow(() -> new ObjectNotFoundException(id,id.toString())));}
+            .orElseThrow(() -> new ObjectNotFoundException("Não há usuários para o ID especificado!")));}
 
-    public User findByEmailAndPassword(String email, String password){return userRepository.findByEmailAndPassword(email, password);};
-
-    public User findByEmail(String email){return userRepository.findByEmail(email);};
-
+    public User findByEmail(String email){return userRepository.findByEmail(email);}
 
     public UserRS signUp(UserRQ userRQ){
         User user = userRepository.save(new User(userRQ));
         checkCRMs(user);
         return new UserRS(user);}
 
-    public void delete(Integer id){userRepository.deleteById(id);}
+    public void delete(Integer id){
+        findById(id);
+        userRepository.deleteById(id);}
 
     public UserRS update(Integer id, UserRQ userRQ) {
 
-        User userToUpdate = userRepository.findById(id).get();
+        User userToUpdate = userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Não há usuários para o ID especificado!"));
         User user = new User(userRQ);
 
         userToUpdate.setName(user.getName());

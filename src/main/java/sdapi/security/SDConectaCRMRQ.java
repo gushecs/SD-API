@@ -1,17 +1,10 @@
 package sdapi.security;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import sdapi.entities.CRM;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-
 @Getter
-public class SDConectaCRMRQ implements Serializable {
+public class SDConectaCRMRQ{
 
     private final String crm;
     private final String uf;

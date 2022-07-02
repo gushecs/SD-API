@@ -1,8 +1,6 @@
 package sdapi.security;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import sdapi.entities.CRM;
 import sdapi.entities.User;
 

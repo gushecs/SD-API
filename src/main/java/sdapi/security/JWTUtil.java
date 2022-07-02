@@ -1,6 +1,5 @@
 package sdapi.security;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class JWTUtil implements Serializable {
+public class JWTUtil {
 
     @Value("${jwt.secret}")
     private String secret;
