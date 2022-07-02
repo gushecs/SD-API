@@ -16,7 +16,7 @@ public class JWTAuthentication implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (user.getProfile() == 2)
+        if (user.getProfile() == 1)
             return List.of(new SimpleGrantedAuthority("ADMIN"));
         else
             return List.of(new SimpleGrantedAuthority("USER"));

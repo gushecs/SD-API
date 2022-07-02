@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class CRM {
 
     @Id
-//    @SequenceGenerator(name = "crm_id_sequence",sequenceName = "crm_id_sequence")
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -36,4 +36,11 @@ public class CRM {
     public void setUf(UF uf) {this.uf = uf.getDescription();}
 
     public UF getUf(){return UF.toEnum(this.uf);}
+
+    public CRM(CRMRQ crmRQ) {
+        this.crm=crmRQ.getCrm();
+        this.uf=UF.toEnum(crmRQ.getUf()).getDescription();
+        this.specialty=crmRQ.getSpecialty();
+        this.user=null;
+    }
 }

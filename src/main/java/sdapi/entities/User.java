@@ -36,4 +36,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<CRM> crms = new ArrayList<>();
 
+    public User(UserRQ userRQ) {
+        this.email=userRQ.getEmail();
+        this.password=userRQ.getPassword();
+        this.name=userRQ.getName();
+        this.surname=userRQ.getSurname();
+        this.mobile_phone=userRQ.getMobile_phone();
+        this.authorization_status="UNREGISTERED";
+        if (userRQ.getProfile() != null)
+            this.profile=userRQ.getProfile();
+        else
+            this.profile = 2;
+        for (CRMRQ crmRQ:userRQ.getCrms()){this.crms.add(new CRM(crmRQ));}
+    }
+
 }

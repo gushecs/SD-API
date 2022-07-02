@@ -28,7 +28,6 @@ public class UserRQ {
 
     private String surname;
     private String mobile_phone;
-    private String authorization_status;
 
     @Min(value = 1, message = "Profile inválido! Possíveis valores: 1 para conta Admin e 2 para usuário padrão.")
     @Max(value = 2, message = "Profile inválido! Possíveis valores: 1 para conta Admin e 2 para usuário padrão.")
