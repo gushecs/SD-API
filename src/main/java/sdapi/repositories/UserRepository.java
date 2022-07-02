@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "(:specialty IS NULL OR crm.specialty = :specialty)")
     List<User> findAll (@Param("name") String name,@Param("specialty") String specialty);
 
+    User findByEmailAndPassword(String email, String password);
+
 }

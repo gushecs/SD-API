@@ -17,5 +17,9 @@ spring:
   flyway:
     locations: filesystem:./migration
 
+jwt:
+  secret: secret
+  expiration: 3600000
+
 server:
   port: 8080

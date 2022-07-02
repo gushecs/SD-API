@@ -5,22 +5,17 @@ import sdapi.entities.CRM;
 import sdapi.entities.CRMRQ;
 import sdapi.entities.UF;
 import sdapi.repositories.CRMRepository;
-
-import java.util.Optional;
+import sdapi.repositories.UserRepository;
 
 @Service
-public record CRMService(CRMRepository crmRepository,UserService userService) {
+public record CRMService(CRMRepository crmRepository, UserRepository userRepository) {
 
     public CRM register(CRMRQ registerRQ) {
         CRM crm = new CRM();
         crm.setCrm(registerRQ.getCrm());
         crm.setSpecialty(registerRQ.getSpecialty());
         crm.setUf(UF.toEnum(registerRQ.getUf()));
-        crm.setUser(userService.findById(registerRQ.getUser_id()));
+        crm.setUser(userRepository.findById(registerRQ.getUser_id()).get());
         return crmRepository.save(crm);}
-
-    public void register(CRM crm) {crmRepository.save(crm);}
-
-    public Optional<CRM> findByCrmAndUf(String crm, String uf) {return crmRepository.findByCrmAndUf(crm, uf);}
 
 }

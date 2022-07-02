@@ -1,7 +1,7 @@
 package sdapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import sdapi.entities.CRM;
 
 import javax.persistence.*;
 import java.util.ArrayList;
