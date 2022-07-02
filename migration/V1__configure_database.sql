@@ -1,12 +1,12 @@
 CREATE TABLE tb_user (
  id integer not null AUTO_INCREMENT,
- authorization_status varchar(255),
+ authorization_status varchar(255) default 'UNREGISTERED',
  email varchar(255) not null unique,
  mobile_phone varchar(255),
  name varchar(255) not null,
  password varchar(255) not null,
  surname varchar(255),
- profile integer,
+ profile integer default 2,
  primary key (id)
 );
 

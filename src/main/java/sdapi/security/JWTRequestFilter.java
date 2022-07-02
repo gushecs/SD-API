@@ -30,7 +30,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request)
             throws ServletException {
         String path = request.getRequestURI();
-        return "/sdapi/login".equals(path);
+        String method = request.getMethod();
+        return "/sdapi/login".equals(path) || "/h2-console".equals(path) || method.equals("GET");
     }
 
     @Override
