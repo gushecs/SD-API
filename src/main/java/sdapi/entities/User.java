@@ -17,8 +17,8 @@ import java.util.List;
 public class User {
 
     @Id()
-    @SequenceGenerator(name = "user_id_sequence",sequenceName = "user_id_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_sequence")
+//    @SequenceGenerator(name = "user_id_sequence",sequenceName = "user_id_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true)
@@ -31,6 +31,7 @@ public class User {
     private String surname;
     private String mobile_phone;
     private String authorization_status;
+    private Integer profile;
 
     @OneToMany(mappedBy = "user")
     private List<CRM> crms = new ArrayList<>();

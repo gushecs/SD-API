@@ -34,32 +34,32 @@ public record JWTAuthenticationController(JWTUtil jwtTokenUtil, UserService user
         restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
         SDConectaUserRS sd_conecta_user;
 
-        try {
+//        try {
+//
+//            sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
+//
+//        } catch (Exception e) {
+//            MultiValueMap<String, String> sdConectaPartnerRQ = new LinkedMultiValueMap<String, String>();
+//            sdConectaPartnerRQ.add("client_id", System.getenv("SDAPI_CLIENT_ID"));
+//            sdConectaPartnerRQ.add("client_secret", System.getenv("SDAPI_CLIENT_SECRET"));
+//            sdConectaPartnerRQ.add("grant_type", "client_credentials");
+//
+//            HttpHeaders headersPartner = new HttpHeaders();
+//            if (authorization != null) {
+//                headersPartner.set("Authorization", authorization);
+//            }
+//            headersPartner.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//
+//            HttpEntity<MultiValueMap<String, String>> requestPartner = new HttpEntity<>(sdConectaPartnerRQ, headersPartner);
+//
+//            SDConectaPartnerRS sdConectaPartnerRS = restTemplate.postForObject(System.getenv("SDAPI_URL") + "oauth2/token", requestPartner, SDConectaPartnerRS.class);
+//            authorization = sdConectaPartnerRS.getAccess_token();
+//
+//            sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
+//
+//        }
 
-            sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
-
-        } catch (Exception e) {
-            MultiValueMap<String, String> sdConectaPartnerRQ = new LinkedMultiValueMap<String, String>();
-            sdConectaPartnerRQ.add("client_id", System.getenv("SDAPI_CLIENT_ID"));
-            sdConectaPartnerRQ.add("client_secret", System.getenv("SDAPI_CLIENT_SECRET"));
-            sdConectaPartnerRQ.add("grant_type", "client_credentials");
-
-            HttpHeaders headersPartner = new HttpHeaders();
-            if (authorization != null) {
-                headersPartner.set("Authorization", authorization);
-            }
-            headersPartner.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-            HttpEntity<MultiValueMap<String, String>> requestPartner = new HttpEntity<>(sdConectaPartnerRQ, headersPartner);
-
-            SDConectaPartnerRS sdConectaPartnerRS = restTemplate.postForObject(System.getenv("SDAPI_URL") + "oauth2/token", requestPartner, SDConectaPartnerRS.class);
-            authorization = sdConectaPartnerRS.getAccess_token();
-
-            sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
-
-        }
-
-        return ResponseEntity.ok(new JWTResponse(token, sd_conecta_user));
+        return ResponseEntity.ok(new JWTResponse(token, null));//sd_conecta_user));
     }
 
     private SDConectaUserRS userAuth(SDConectaUserRQ userRQ, RestTemplate restTemplate, String authorization){

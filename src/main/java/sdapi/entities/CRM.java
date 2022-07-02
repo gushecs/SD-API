@@ -17,8 +17,8 @@ import javax.persistence.*;
 public class CRM {
 
     @Id
-    @SequenceGenerator(name = "crm_id_sequence",sequenceName = "crm_id_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "crm_id_sequence")
+//    @SequenceGenerator(name = "crm_id_sequence",sequenceName = "crm_id_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, length = 45)

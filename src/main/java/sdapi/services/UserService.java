@@ -19,6 +19,9 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
 
     public User findByEmailAndPassword(String email, String password){return userRepository.findByEmailAndPassword(email, password);};
 
+    public User findByEmail(String email){return userRepository.findByEmail(email);};
+
+
     public User signUp(User user){
         User userToReturn = userRepository.save(user);
         checkCRMs(user);

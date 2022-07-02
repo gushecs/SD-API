@@ -6,6 +6,7 @@ CREATE TABLE tb_user (
  name varchar(255) not null,
  password varchar(255) not null,
  surname varchar(255),
+ profile integer,
  primary key (id)
 );
 
@@ -20,12 +21,12 @@ CREATE TABLE crm (
  foreign key (user_id) references tb_user(id)
 );
 
-INSERT INTO tb_user(NAME, SURNAME, EMAIL, PASSWORD, MOBILE_PHONE)
-VALUES ('Maria','Bethânia','maria@bethania.com','password','22912345678'),
-('Person','McPerson','real@person.com','123456','21971717272'),
-('Usuario','Testeum','usuario.teste-1@email.com','hard_password','997456123'),
-('Usuario','Testedois','usuario.teste-2@email.com','harder_password','997056123'),
-('Usuario','Testetres','usuario.teste-3@email.com','hardest_password','997456123');
+INSERT INTO tb_user(NAME, SURNAME, EMAIL, PASSWORD, MOBILE_PHONE, PROFILE)
+VALUES ('Maria','Bethânia','maria@bethania.com','password','22912345678', 1),
+('Person','McPerson','real@person.com','123456','21971717272', 1),
+('Usuario','Testeum','usuario.teste-1@email.com','hard_password','997456123', 1),
+('Usuario','Testedois','usuario.teste-2@email.com','harder_password','997056123', 2),
+('Usuario','Testetres','usuario.teste-3@email.com','hardest_password','997456123', 2);
 
 INSERT INTO crm(CRM, UF, SPECIALTY, USER_ID)
 VALUES ('123', 'RJ', 'Cardiologia', 1),
