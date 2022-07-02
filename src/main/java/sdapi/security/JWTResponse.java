@@ -8,6 +8,6 @@ import lombok.Getter;
 public class JWTResponse{
 
     private final String sdapi_token;
-    private final SDConectaUserRS sd_connecta_user;
+    private final SDConectaUserRS sd_conecta_user;
 
 }

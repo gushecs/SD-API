@@ -1,4 +1,4 @@
-package sdapi;
+package sdapi.repositories;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Repository;
 import sdapi.entities.User;
-import sdapi.repositories.UserRepository;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ class UserRepositoryTest {
 
     @Test
     void findAllInAllScenarios() {
-        //Test all findAll methods considering FlyWay running only V1__configure_database.sql.
+        //Test all User findAll methods considering FlyWay running only V1__configure_database.sql.
         //In other contexts the method may need update.
 
         int expectedAllSize = 5;

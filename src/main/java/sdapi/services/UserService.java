@@ -31,7 +31,9 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
         return new UserRS(user);}
 
     public void delete(Integer id){
-        findById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Não há usuários para o ID especificado!"));
+        crmRepository.deleteAll(user.getCrms());
         userRepository.deleteById(id);}
 
     public UserRS update(Integer id, UserRQ userRQ) {
