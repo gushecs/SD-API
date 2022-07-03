@@ -1,7 +1,7 @@
 # SD-API
-API para o processo seletivo da SD Conecta
+##### API para o processo seletivo da SD Conecta
 
-##Instalação:
+## Instalação:
 
 Basta fazer o *pull* do projeto, instalar as dependências
 com o *maven* e rodar o *SDAPIApplication* usando o *Spring Boot*.
@@ -16,7 +16,7 @@ Alternativamente, você pode colocar esses valores diretamente no
 programa editando esses campos para a variável *sdConectaPartnerRQ*
  em *sdapi/security/JWTAuthenticationController.java*.
 
-##Informações básicas:
+## Informações básicas:
 
 A API utiliza H2 e o console deste está disponível no endpoint aberto */h2-console*.
 Caso deseje realizar a iteração com a API via *Postman*, o projeto inclui 
@@ -24,17 +24,17 @@ a coleção *SDAPI.postman_collection.json* na pasta raíz. Todas as requisiçõ
 devem ser feitas em *localhost:8080* e utilizam *Content-Type = application/json*
 .A API prevê as seguintes iterações:
 
-##Métodos:
+## Métodos:
 
-###POST - login
+### POST - login
 
-Endpoint: /sdapi/login
+#### Endpoint: /sdapi/login
 
-Header:
+#### Header:
 
 - "Authorization": "Bearer {partner_token}"
 
-Request Body:
+#### Request Body:
 ```
 {
     "email": "email",
@@ -43,8 +43,8 @@ Request Body:
 ```
 
 
-Responses:\
-\
+#### Responses:
+
 **_200 OK:_**
 ```
 {
@@ -65,16 +65,16 @@ Responses:\
 
 **_401 UNAUTHORIZED:_** Informações fornecidas no Request Body inválidas.
 
-###GET - findAll
+### GET - findAll
 
-Endpoint: /sdapi/users
+#### Endpoint: /sdapi/users
 
-Params:
+#### Params:
 
 - name (opicional): {name} -> Filtra apenas usuários que tenham o nome {name};
 - specialty(opcional): {specialty} -> Filtra apenas os usuários que tenham pelo menos um CRM com a especialidade {specialty}.
 
-Response:
+#### Response:
 
 Lista com todos os usuários no formato:
 ```
@@ -96,12 +96,12 @@ Lista com todos os usuários no formato:
 ]
 ```
 
-###GET - findById
+### GET - findById
 
-Endpoint: /sdapi/users/{id}
+#### Endpoint: /sdapi/users/{id}
 
-Responses:\
-\
+#### Responses:
+
 **_200 OK:_** Retorna o usuário de id {id} no formato:
 ```
 {
@@ -121,15 +121,15 @@ Responses:\
 ```
 **_404 NOT FOUND:_** Caso o {id} não corresponda a usuário nenhum.
 
-###POST - register User
+### POST - register User
 
-Endpoint: /sdapi/users
+#### Endpoint: /sdapi/users
 
-Header:
+#### Header:
 
 - "Authorization": "Bearer {sdapi_token}"
 
-Request Body:
+#### Request Body:
 ```
 {
     "name": "name",
@@ -155,7 +155,7 @@ Ao ser criado, um usuário ganha um *authorization_status* com valor de *UNREGIS
 Caso o usuário seja inserido com um CRM inexistente, o CRM é cadastrado automaticamente. Caso o CRM já 
 esteja atribuído a outro usuário, o dono do registro é modificado.
 
-Responses:
+#### Responses:
 
 **_200 OK:_** Retorna o usuário cadastrado.
 
@@ -163,15 +163,15 @@ Responses:
 
 **_400 BAD REQUEST:_** Caso o email fornecido já esteja cadastrado ou algum campo tenha valor inválido.
 
-###PUT - update User
+### PUT - update User
 
-Endpoint: /sdapi/users/{id}
+#### Endpoint: /sdapi/users/{id}
 
-Header:
+#### Header:
 
 - "Authorization": "Bearer {sdapi_token}"
 
-Request Body:
+#### Request Body:
 ```
 {
     "email": "email",
@@ -195,7 +195,7 @@ Caso o usuário seja atualizado com um CRM inexistente, o CRM é cadastrado auto
 esteja atribuído a outro usuário, o dono do registro é modificado. Se algum CRM do usuário deixar de pertencer a ele, ele é deletado do banco de dados automaticamente. 
 O método pode ser utilizado para atualizar o campo *specialty* do CRM.
 
-Responses:
+#### Responses:
 
 **_200 OK:_** Retorna o usuário atualizado, correspondente ao {id}.
 
@@ -206,15 +206,15 @@ Responses:
 **_404 NOT FOUND:_** Caso o {id} não corresponda a usuário nenhum.
 
 
-###DELETE - delete User
+### DELETE - delete User
 
-Endpoint: /sdapi/users/{id}
+#### Endpoint: /sdapi/users/{id}
 
-Header:
+#### Header:
 
 - "Authorization": "Bearer {sdapi_token}"
 
-Responses:
+#### Responses:
 
 **_200 OK:_** Deleta o usuário correspondente ao {id}.
 
@@ -222,15 +222,15 @@ Responses:
 
 **_404 NOT FOUND:_** Caso o {id} não corresponda a usuário nenhum.
 
-###POST - register CRM
+### POST - register CRM
 
-Endpoint: /sdapi/crm
+#### Endpoint: /sdapi/crm
 
-Header:
+#### Header:
 
 - "Authorization": "Bearer {sdapi_token}"
 
-Request Body:
+#### Request Body:
 ```
 {
 "crm": "CRM",
@@ -240,7 +240,7 @@ Request Body:
 }
 ```
 
-Responses:
+#### Responses:
 
 **_200 OK:_** Retorna o CRM cadastrado.
 
