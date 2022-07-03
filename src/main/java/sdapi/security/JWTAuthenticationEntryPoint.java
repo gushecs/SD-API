@@ -34,8 +34,7 @@ public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint{
         return "{\"timestamp\": " + date + ", "
                 + "\"status\": 403, "
                 + "\"error\": \"Forbidden\", "
-                + "\"message\": \"Você não tem permissão para executar esta ação.\", "
-                + "\"path\": \"/login\"}";
+                + "\"message\": \"Você não tem permissão para executar esta ação.\", }";
     }
 
     private String json_unauthentic() {

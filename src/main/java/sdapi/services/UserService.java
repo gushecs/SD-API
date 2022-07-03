@@ -11,6 +11,7 @@ import sdapi.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public record UserService (CRMRepository crmRepository, UserRepository userRepository){
@@ -26,6 +27,8 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
     public User findByEmail(String email){return userRepository.findByEmail(email);}
 
     public UserRS signUp(UserRQ userRQ){
+        if (userRepository.findByEmail(userRQ.getEmail()) != null)
+            throw new IllegalArgumentException("Email já cadastrado em outro usuário!");
         User user = userRepository.save(new User(userRQ));
         checkCRMs(user);
         return new UserRS(user);}
@@ -40,6 +43,9 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
 
         User userToUpdate = userRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Não há usuários para o ID especificado!"));
+        if (userRepository.findByEmail(userRQ.getEmail()) != null && !Objects.equals(userRepository.findByEmail(userRQ.getEmail()).getId(), id))
+            throw new IllegalArgumentException("Email já cadastrado em outro usuário!");
+
         User user = new User(userRQ);
 
         userToUpdate.setName(user.getName());
@@ -62,17 +68,21 @@ public record UserService (CRMRepository crmRepository, UserRepository userRepos
         return new UserRS(userRepository.save(userToUpdate));}
 
     private void checkCRMs(User user) {
-        for (CRM crm: user.getCrms()){
+        List<CRM> crms = user.getCrms();
+        for (CRM crm: crms){
             if (crmRepository.findByCrmAndUf(crm.getCrm(), crm.getUf().getDescription()).isPresent()) {
                 CRM crmToUpdate = crmRepository.findByCrmAndUf(crm.getCrm(), crm.getUf().getDescription()).get();
                 crmToUpdate.setUser(user);
                 crmToUpdate.setSpecialty(crm.getSpecialty());
+                crm.setId(crmToUpdate.getId());
                 crmRepository.save(crmToUpdate);
             } else {
                 crm.setUser(user);
-                crmRepository.save(crm);
+                CRM crmSaved = crmRepository.save(crm);
+                crm.setId(crmSaved.getId());
             }
         }
+        user.setCrms(crms);
     }
 
 }

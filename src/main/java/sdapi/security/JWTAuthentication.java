@@ -50,5 +50,5 @@ public class JWTAuthentication implements Authentication {
     public String getName() {
         return null;
     }
-    // rest of the code omitted
+
 }

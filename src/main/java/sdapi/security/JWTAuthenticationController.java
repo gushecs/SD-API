@@ -29,10 +29,13 @@ public record JWTAuthenticationController(JWTUtil jwtTokenUtil, UserRepository u
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
         SDConectaUserRS sd_conecta_user;
+        String partner_authorization_status;
+        authorization = authorization.replace("Bearer ","");
 
         try {
 
             sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
+            partner_authorization_status = "Seu token da SD conecta que está sendo utilizado ainda é válido.";
 
         } catch (Exception e) {
             MultiValueMap<String, String> sdConectaPartnerRQ = new LinkedMultiValueMap<String, String>();
@@ -52,13 +55,14 @@ public record JWTAuthenticationController(JWTUtil jwtTokenUtil, UserRepository u
             authorization = sdConectaPartnerRS.getAccess_token();
 
             sd_conecta_user = userAuth(new SDConectaUserRQ(userToAuth), restTemplate, authorization);
+            partner_authorization_status = "Seu token da SD conecta expirou! Por favor, no próximo login, inclua o novo partner token.";
 
         }
 
         userToAuth.setAuthorization_status(sd_conecta_user.getAuthorization_status());
         userRepository.save(userToAuth);
 
-        return ResponseEntity.ok(new JWTResponse(token, sd_conecta_user));
+        return ResponseEntity.ok(new JWTResponse(token, partner_authorization_status, authorization, sd_conecta_user));
     }
 
     private SDConectaUserRS userAuth(SDConectaUserRQ userRQ, RestTemplate restTemplate, String authorization){

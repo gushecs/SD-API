@@ -13,7 +13,7 @@ public class CreateDatabase implements CommandLineRunner {
     Environment env;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         Flyway.configure().dataSource(env.getProperty("spring.datasource.url"),env.getProperty("spring.datasource.username"),env.getProperty("spring.datasource.password")).load().migrate();
     }
 }

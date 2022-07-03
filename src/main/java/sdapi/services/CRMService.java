@@ -12,6 +12,8 @@ import sdapi.repositories.UserRepository;
 public record CRMService(CRMRepository crmRepository, UserRepository userRepository) {
 
     public CRM register(CRMRQ registerRQ) {
+        if (crmRepository.findByCrmAndUf(registerRQ.getCrm(), registerRQ.getUf()).isPresent())
+            throw new IllegalArgumentException("CRM " + registerRQ.getCrm() + " com UF " + registerRQ.getUf() + " já cadastrado!");
         CRM crm = new CRM();
         crm.setCrm(registerRQ.getCrm());
         crm.setSpecialty(registerRQ.getSpecialty());

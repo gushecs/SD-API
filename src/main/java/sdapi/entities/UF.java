@@ -25,7 +25,7 @@ public enum UF {
                 return x;
             }
         }
-        throw new IllegalArgumentException("Invalid UF "+uf);
+        throw new IllegalArgumentException("" + uf + " não é uma UF válida!");
     }
 
 }

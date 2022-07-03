@@ -13,16 +13,13 @@ import java.util.List;
 @Getter
 public class UserRQ {
 
-    @NotNull(message = "O campo de email é obrigatório!")
     @NotEmpty(message = "O campo de email é obrigatório!")
     @Email(message = "Email inválido!")
     private String email;
 
-    @NotNull(message = "Você precisa cadastrar uma senha.")
     @NotEmpty(message = "Você precisa cadastrar uma senha.")
     private String password;
 
-    @NotNull(message = "O campo de nome é obrigatório!")
     @NotEmpty(message = "O campo de nome é obrigatório!")
     private String name;
 
