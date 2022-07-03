@@ -30,7 +30,8 @@ public record JWTAuthenticationController(JWTUtil jwtTokenUtil, UserRepository u
         restTemplate.getMessageConverters().add(new FormHttpMessageConverter());
         SDConectaUserRS sd_conecta_user;
         String partner_authorization_status;
-        authorization = authorization.replace("Bearer ","");
+        if (authorization != null)
+            authorization = authorization.replace("Bearer ","");
 
         try {
 
